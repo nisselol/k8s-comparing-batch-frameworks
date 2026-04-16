@@ -1,0 +1,15 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: kind-test-sleep
+spec:
+  template:
+    spec:
+      containers:
+      - name: sleep-container
+        image: busybox:latest
+        args:
+        - /bin/sh
+        - -c
+        - "echo 'Job started'; sleep 30; echo 'Job finished'"
+      restartPolicy: Never
