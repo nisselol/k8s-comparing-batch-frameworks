@@ -1,0 +1,18 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: yunikorn-service-monitor
+  namespace: yunikorn
+  labels:
+    release: prometheus
+spec:
+  selector:
+    matchLabels:
+      app: yunikorn
+  namespaceSelector:
+    matchNames:
+      - yunikorn
+  endpoints:
+    - port: yunikorn-service
+      path: /ws/v1/metrics
+      interval: 30s

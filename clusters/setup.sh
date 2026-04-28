@@ -33,7 +33,9 @@ echo "!!! Configuring Kueue..."
 kubectl apply -f clusters/kueue/kueue-config.yaml
 
 echo "!!! Configuring Prometheus to scrape Kueue metrics..."
-kubectl apply --server-side -f https://github.com/kubernetes-sigs/kueue/releases/download/v0.17.1/prometheus.yaml
+helm upgrade kueue oci://registry.k8s.io/kueue/charts/kueue \
+  --namespace kueue-system \
+  -f values.yaml
 
 echo "!!! Installing YuniKorn..."
 helm install yunikorn yunikorn/yunikorn \

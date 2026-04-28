@@ -11,5 +11,9 @@ spec:
         args:
         - /bin/sh
         - -c
-        - "echo 'Job started'; sleep 30; echo 'Job finished'"
+        - "sleep 30"
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
       restartPolicy: Never
